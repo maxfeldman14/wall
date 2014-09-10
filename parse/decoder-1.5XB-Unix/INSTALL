@@ -1,0 +1,28 @@
+You can use "decoder.py" simply by placing it in the same directory of the program that will be importing it.
+If you want it used with any Python program, anywhere on your disk you need to copy it into the Python's root directory:
+/lib/%PythonRoot%/site-packages/
+(The standard procedure)
+
+Whatever your choice would be you will need the following files:
+codecs.pdc (Optional)
+decoder.py
+fileinfo.py
+
+If you don't have the Mutagen library already installed you will have to install it.
+Use the setup.py file in the mutagen-1.19 directory.
+
+If you don't have the apropriate external decoder(s) already, you will have to instal them.
+You will need: lame, faad, flac, ffmpeg, oggdec.
+To install them on Ubuntu/Debian use:
+$ sudo
+$ apt-get install lame
+$ apt-get install faad
+$ apt-get install flac
+$ apt-get install ffmpeg
+$ apt-get install vorbis-tools
+
+On other Unix platforms, try to use their internet repository with application manager or download them from the internet and install using make.
+
+For further information consult the source code.
+
+Enjoy yourself!
