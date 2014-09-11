@@ -1,6 +1,7 @@
 int led1 = 12;
 int led2 = 13;
 int lvl = 0;
+int dir = 1;
 
 void setup() {
   pinMode(led1, OUTPUT);
@@ -8,14 +9,21 @@ void setup() {
 }
 
 void loop() {
-  for(int i = 0; i < 10; i++) {
     digitalWrite(led1, LOW);
     digitalWrite(led2, LOW);
-    delay(lvl);
-    digitalWrite(led1, HIGH);
-    digitalWrite(led2, HIGH);
-    delay(20-lvl);
-  }
-  lvl++;
-  lvl = lvl % 20;
+    if (lvl <= 10) {
+      delayMicroseconds(lvl);
+      digitalWrite(led1, HIGH);
+      delayMicroseconds(20-lvl-lvl);
+      digitalWrite(led2, HIGH);
+      delayMicroseconds(lvl);
+    } else {
+      delayMicroseconds(20-lvl);
+      digitalWrite(led2, HIGH);
+      delayMicroseconds(lvl+lvl-20);
+      digitalWrite(led1, HIGH);
+      delayMicroseconds(20-lvl);
+    }
+  lvl+=dir;
+  dir = lvl >= 20 && dir > 0? -1 : lvl <= 0 && dir < 0? 1 : dir;
 }
