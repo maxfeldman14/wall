@@ -42,6 +42,7 @@ for i in xrange(mp3.getnframes()/chunksize):
         sample = abs(struct.unpack("<h", frames[spot:spot+2])[0])
         realsamples.append(sample)
     fft = numpy.real(numpy.fft.rfft(realsamples))
+    fullbars = []
     bars = []
     currsample = 1
     for j in xrange(10):
@@ -49,7 +50,9 @@ for i in xrange(mp3.getnframes()/chunksize):
         for k in xrange(pow(2, j)):
             total += abs(fft[currsample])
             currsample += 1
-        bars.append(int(math.sqrt(total))/50)
+        fullbars.append(int(math.sqrt(total))/50)
+    for j in xrange(5):
+      bars.append((fullbars[j*2] + fullbars[(j*2)+1])/2)
 
     print chr(27) + "[2J",
     print "\033[0;0H",
